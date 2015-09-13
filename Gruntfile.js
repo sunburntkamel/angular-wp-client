@@ -21,11 +21,50 @@ module.exports = function (grunt) {
     dist: 'dist'
   };
 
+  var modRewrite = require('connect-modrewrite');
+  var mountFolder = function (connect, dir) {
+      return connect.static(require('path').resolve(dir));
+  };
+  grunt.loadNpmTasks('grunt-ng-constant');
   // Define the configuration for all the tasks
   grunt.initConfig({
 
     // Project settings
     yeoman: appConfig,
+
+    //ng-constant
+   ngconstant: {
+     options: {
+       name: 'config',
+       dest: '<%= yeoman.app %>/scripts/config.js',
+       constants: {
+
+       }
+     },
+     dev: {
+       constants: {
+         ENV: 'localhost',
+         CLIENT_SECRET: {
+           site: 'sunburntkamel.wordpress.com'
+         },
+         DOMAIN_URL: {
+           wordpress: 'https://public-api.wordpress.com/rest/v1.1',
+           local: ''
+         }
+       }
+     },
+     prod: {
+       constants: {
+         ENV: 'production',
+         DOMAIN_URL: {
+           wordpress: 'https://public-api.wordpress.com/rest/v1.1/'
+         },
+         CLIENT_SECRET: {
+           site: 'sunburntkamel.wordpress.com'
+         }
+       }
+     }
+   },
 
     // Watches files for changes and runs tasks based on the changed files
     watch: {
@@ -68,7 +107,7 @@ module.exports = function (grunt) {
       options: {
         port: 9000,
         // Change this to '0.0.0.0' to access the server from outside.
-        hostname: 'localhost',
+        hostname: '127.0.0.1',
         livereload: 35729
       },
       livereload: {
@@ -85,7 +124,9 @@ module.exports = function (grunt) {
                 '/app/styles',
                 connect.static('./app/styles')
               ),
-              connect.static(appConfig.app)
+              connect.static(appConfig.app),
+              modRewrite (['!\\.html|\\.js|\\.svg|\\.css|\\.png|\\.jpg$ /index.html [L]']),
+              mountFolder(connect, 'app')
             ];
           }
         }
@@ -254,7 +295,10 @@ module.exports = function (grunt) {
         flow: {
           html: {
             steps: {
-              js: ['concat', 'uglifyjs'],
+              js: [
+                'concat',
+                // 'uglifyjs'
+              ],
               css: ['cssmin']
             },
             post: {}
@@ -388,6 +432,13 @@ module.exports = function (grunt) {
           cwd: '.',
           src: 'bower_components/bootstrap-sass-official/assets/fonts/bootstrap/*',
           dest: '<%= yeoman.dist %>'
+        }, {
+//for font-awesome
+            expand: true,
+            dot: true,
+            cwd: 'bower_components/font-awesome',
+            src: ['fonts/*.*'],
+            dest: '<%= yeoman.dist %>'
         }]
       },
       styles: {
@@ -431,6 +482,7 @@ module.exports = function (grunt) {
     grunt.task.run([
       'clean:server',
       'wiredep',
+      'ngconstant:dev',
       'concurrent:server',
       'autoprefixer:server',
       'connect:livereload',
@@ -455,6 +507,7 @@ module.exports = function (grunt) {
   grunt.registerTask('build', [
     'clean:dist',
     'wiredep',
+    'ngconstant:prod',
     'useminPrepare',
     'concurrent:dist',
     'autoprefixer',
@@ -463,7 +516,7 @@ module.exports = function (grunt) {
     'copy:dist',
     'cdnify',
     'cssmin',
-    'uglify',
+    // 'uglify',
     'filerev',
     'usemin',
     'htmlmin'

@@ -14,20 +14,30 @@ angular
     'ngCookies',
     'ngResource',
     'ngRoute',
+    'ui.router',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'ui.bootstrap',
+    'config'
   ])
-  .config(function ($routeProvider) {
-    $routeProvider
-      .when('/', {
+  .config(function ($stateProvider, $urlRouterProvider) {
+    $stateProvider
+      .state('main', {
+        url: '/',
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
       })
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl'
-      })
-      .otherwise({
-        redirectTo: '/'
+      .state('single', {
+        url: '/p/:post_id/:slug',
+        templateUrl: 'views/single.html',
+        controller: 'SingleCtrl'
       });
-  });
+    $urlRouterProvider.otherwise('/');
+
+  })
+  .filter('thumb', function() {
+    return function(i, w, h, crop) {
+      return i+'?w='+w+'&h='+h+'&crop='+crop;
+    };
+  })
+;
