@@ -36,7 +36,7 @@ angular.module('angularWpClientApp')
       return messageClasses;
     };
     $scope.meta = {
-      pageTitle: ''
+      pageTitle: 'Hi, I&#8217;m Amie'
     };
     $scope.tmpObj = {
       id: 0,

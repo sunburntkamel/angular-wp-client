@@ -14,9 +14,6 @@ angular.module('angularWpClientApp')
       'AngularJS',
       'Karma'
     ];
-    $scope.pageTitle = 'Hi, I&#8217;m Amie';
-    $scope.message.text = 'amie';
-    $scope.message.status = 'success';
     posts.get({
       type: 'jetpack-portfolio'
     }, function(res) {
