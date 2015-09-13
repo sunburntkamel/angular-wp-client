@@ -1,0 +1,1 @@
+<h2>{{post.title}}</h2> <p class="text-muted" ng-bind-html="post.excerpt"></p> <div class="content" ng-bind-html="post.content"></div> <div ng-repeat="picture in post.attachments"> <div class="col-md-3"> <p> <img ng-src="{{picture.URL | thumb:'256':'256':'1'}}" alt="picture.title" class="img-responsive img-circle img-thumbnail"> </p> <p>{{picture.caption}}</p> </div></div>
