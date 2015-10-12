@@ -10,7 +10,7 @@
 angular.module('angularWpClientApp')
   .service('posts', function ($resource, DOMAIN_URL, CLIENT_SECRET) {
     // AngularJS will instantiate a singleton by calling "new" on this function
-    return $resource(DOMAIN_URL.wordpress+'/sites/:site/posts/:post_id', {
+    return $resource(DOMAIN_URL.rest+'/sites/:site/posts/:post_id', {
       site: CLIENT_SECRET.site,
       post_id: '@post_id',
       context: '@context',
