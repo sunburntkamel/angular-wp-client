@@ -58,7 +58,7 @@ module.exports = function (grunt) {
        constants: {
          ENV: 'production',
          DOMAIN_URL: {
-           rest: 'https://public-api.wordpress.com/rest/v1.1'
+           rest: 'https://public-api.wordpress.com/rest/v1.1',
            oauth: 'https://public-api.wordpress.com/oauth2'
          },
          CLIENT_SECRET: {

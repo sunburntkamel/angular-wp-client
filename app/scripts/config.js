@@ -4,6 +4,6 @@ angular.module('config', [])
 
 .constant('CLIENT_SECRET', {site:'sunburntkamel.wordpress.com'})
 
-.constant('DOMAIN_URL', {wordpress:'https://public-api.wordpress.com/rest/v1.1',local:''})
+.constant('DOMAIN_URL', {rest:'https://public-api.wordpress.com/rest/v1.1',oauth:'https://public-api.wordpress.com/oauth2',local:''})
 
 ;
