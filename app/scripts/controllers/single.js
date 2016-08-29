@@ -19,5 +19,9 @@ angular.module('angularWpClientApp')
     }, function(res) {
       $scope.post = res;
       $scope.meta.pageTitle = res.title;
+      if (res.hasOwnProperty('post_thumbnail')) {
+        $scope.meta.img = res.post_thumbnail.URL;
+      }
+      console.log($scope.meta.img);
     });
   });

@@ -1,5 +1,8 @@
+<div ng-repeat="term in terms.jetpackPortfolioType">
+  <terms-list term="{{term.slug}}"></terms-list>
+</div>
 <h2>Projects</h2>
-<div ng-repeat="post in items" class="col-md-3">
+<div ng-repeat="post in items" class="col-md-3 col-sm-4 col-xs-6">
   <a ui-sref="single({post_id: post.ID, slug: post.slug})">
     <img ng-src="{{post.featured_image | thumb: '256':'256':'1'}}" class="img-circle img-thumbnail img-responsive" alt="{{post.title}}" />
   </a>

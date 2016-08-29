@@ -1,2 +1,2 @@
 # angular-wp-client
-Angular client app for wordpress.com hosted portfolios
+This app uses the wordpress.com JSON API to pull in content from a wordpress.com portfolio. 

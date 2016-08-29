@@ -5,20 +5,29 @@
  * @name angularWpClientApp.controller:ApplicationcontrollerCtrl
  * @description
  * # ApplicationcontrollerCtrl
- * Controller of the angularWpClientApp
+ * Global controller, sets $scope vars and functions for passing data between states.
  */
 angular.module('angularWpClientApp')
-  .controller('ApplicationcontrollerCtrl', function ($scope, $state) {
+  .controller('ApplicationcontrollerCtrl', function ($scope, $state, terms) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
-    $scope.uiRouterState = $state;$scope.message = {
+    $scope.uiRouterState = $state;
+    $scope.navMenu = [
+      {
+        id: 843,
+        icon: 'fa-list',
+        name: 'Resume'
+      }
+    ];
+    $scope.message = {
       text: '',
       status: ''
     };
     $scope.viewName = '';
+    $scope.terms = {};
     $scope.clearMsg = function() {
       $scope.message = {
         text: '',
@@ -36,11 +45,29 @@ angular.module('angularWpClientApp')
       return messageClasses;
     };
     $scope.meta = {
-      pageTitle: 'Hi, I&#8217;m Amie'
+      pageTitle: 'Hi, I&#8217;m Amie',
+      img: 'https://sunburntkamel.files.wordpress.com/2010/07/cropped-294195815_12efa97007_o.jpg'
     };
     $scope.tmpObj = {
       id: 0,
       type: '',
       object: ''
     };
+    terms.get({
+      taxonomy: 'jetpack-portfolio-type'
+    })
+      .$promise
+      .then(function(res) {
+        console.log(res);
+        $scope.terms.jetpackPortfolioType = res;
+      });
+    terms.get({
+      taxonomy: 'jetpack-portfolio-tag'
+    })
+      .$promise
+      .then(function(res) {
+        console.log(res);
+        $scope.terms.jetpackPortfolioTag = res;
+      });
+
   });

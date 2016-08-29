@@ -24,3 +24,16 @@ h1, h2, h3, h4, h5, h6 {
     text-decoration: none;
   }
 }
+.jumbotron {
+  background-size: cover;
+  h1 {
+    color: white;
+    border-bottom: 0 none;
+    text-transform: capitalize;
+    font-weight: bold;
+  }
+}
+.clear {
+  display: block;
+  clear: both;
+}

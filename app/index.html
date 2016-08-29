@@ -50,8 +50,8 @@
         </div>
       </div>
     </div>
-    <div class="jumbotron">
-      <h2 class="text-center" ng-bind-html="meta.pageTitle"></h2>
+    <div class="jumbotron" style="background-image: url('{{meta.img}}')">
+      <h1 class="text-center" ng-bind-html="meta.pageTitle"></h2>
     </div>
     <div class="container-fluid">
       <div class="row show-grid">
@@ -65,7 +65,7 @@
             <ui-view></ui-view>
         </div>
         <div class="col-md-3 col-md-pull-9">
-            <h3>Sidebar</h3>
+            <nav-menu></nav-menu>
         </div>
       </div>
     </div>
@@ -101,9 +101,17 @@
         <script src="scripts/controllers/single.js"></script>
         <script src="scripts/services/categories.js"></script>
         <script src="scripts/services/tags.js"></script>
+        <script src="scripts/directives/navmenu.js"></<script>
+
+        </script>
+        <script src="scripts/services/terms.js"></script>
+        <script src="scripts/controllers/term.js"></script>
+        <script src="scripts/directives/termlist.js"></script>
+        <script src="scripts/controllers/termlist.js"></script>
         <!-- endbuild -->
         <!-- non-lib scripts -->
         <script src="scripts/config.js" type="text/javascript"></script>
+        <script src="https://use.fontawesome.com/0848da49d9.js"></script>
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
         <!-- end-non-lib -->
 </body>
