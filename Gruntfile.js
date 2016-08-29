@@ -48,7 +48,8 @@ module.exports = function (grunt) {
            site: 'sunburntkamel.wordpress.com'
          },
          DOMAIN_URL: {
-           wordpress: 'https://public-api.wordpress.com/rest/v1.1',
+           rest: 'https://public-api.wordpress.com/rest/v1.1',
+           oauth: 'https://public-api.wordpress.com/oauth2',
            local: ''
          }
        }
@@ -57,7 +58,8 @@ module.exports = function (grunt) {
        constants: {
          ENV: 'production',
          DOMAIN_URL: {
-           wordpress: 'https://public-api.wordpress.com/rest/v1.1/'
+           rest: 'https://public-api.wordpress.com/rest/v1.1'
+           oauth: 'https://public-api.wordpress.com/oauth2'
          },
          CLIENT_SECRET: {
            site: 'sunburntkamel.wordpress.com'
