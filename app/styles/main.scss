@@ -14,6 +14,13 @@ body {
 .navbar {
   border-radius: 0;
   margin-bottom: 0;
+  border: 0 none;
+}
+#logo.navbar-brand {
+  padding: 0;
+  img {
+    height: 100%;
+  }
 }
 h1, h2, h3, h4, h5, h6 {
   text-transform: uppercase;

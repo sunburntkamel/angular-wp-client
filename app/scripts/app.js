@@ -31,7 +31,13 @@ angular
         url: '/p/:post_id/:slug',
         templateUrl: 'views/single.html',
         controller: 'SingleCtrl'
-      });
+      })
+      .state('term', {
+        url: 'term/:taxonomy/:term',
+        templateUrl: 'views/term.html',
+        controller: 'termCtrl'
+      })
+    ;
     $urlRouterProvider.otherwise('/');
 
   })

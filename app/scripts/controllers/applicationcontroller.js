@@ -58,7 +58,6 @@ angular.module('angularWpClientApp')
     })
       .$promise
       .then(function(res) {
-        console.log(res);
         $scope.terms.jetpackPortfolioType = res;
       });
     terms.get({
@@ -66,8 +65,7 @@ angular.module('angularWpClientApp')
     })
       .$promise
       .then(function(res) {
-        console.log(res);
         $scope.terms.jetpackPortfolioTag = res;
       });
-
+    $scope.copyright = new Date().getFullYear();
   });

@@ -10,7 +10,7 @@
 angular.module('angularWpClientApp')
   .service('terms', function ($resource, DOMAIN_URL, CLIENT_SECRET) {
     // AngularJS will instantiate a singleton by calling "new" on this function
-    return $resource(DOMAIN_URL.wordpress+'/sites/:site/taxonomies/:taxonomy/terms', {
+    return $resource(DOMAIN_URL.rest+'/sites/:site/taxonomies/:taxonomy/terms', {
       site: CLIENT_SECRET.site,
       taxonomy: '@taxonomy'
     });
