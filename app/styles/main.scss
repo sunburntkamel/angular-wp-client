@@ -6,10 +6,29 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 
 //colors
 $faintDivider: #d9d9d9; // lt gray
+$mid: #4e818d; //bluish
+$ltcontrast: #8acfd9; //lt blue
+$dkbg: #243f41; // dk blue
+$ltaccent: #8e1d01; // bright red
+$dkaccent: #571001; // dk red
+$mdgray: #8d8d8d;
+$ltgray: #d9d9d9;
+$dkgray: #414141;
 body {
   font-family:  "Open Sans", Helvetica, Arial, sans-serif;
   // needs latest Compass, add '@import "compass"' to your scss
-  background-color: #fff; // Old browsers
+  //background-color: $mdgray; // Old browsers
+  //color: #fff;
+}
+a {
+  color: $mid;
+  &:visited {
+    color: $dkbg;
+  }
+  &:hover {
+    color: $ltcontrast;
+    text-decoration: none;
+  }
 }
 .navbar {
   border-radius: 0;
@@ -44,3 +63,17 @@ h1, h2, h3, h4, h5, h6 {
   display: block;
   clear: both;
 }
+.well,
+.panel,
+.panel-heading,
+.panel-body,
+.list-group,
+.list-group-item {
+  color: $dkgray;
+  border-color: $ltgray;
+}
+.panel-body,
+.list-group-item {
+  background-color: #fff;
+}
+

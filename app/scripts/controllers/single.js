@@ -26,7 +26,7 @@ angular.module('angularWpClientApp')
         $scope.meta.img = res.post_thumbnail.URL;
       }
       // need attachments in an array to do next/prev
-      for (var key in res.attachments){;
+      for (var key in res.attachments){
         $scope.attachArray.push(res.attachments[key]);
       }
       console.log($scope.attachArray);

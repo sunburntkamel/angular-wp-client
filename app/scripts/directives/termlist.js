@@ -20,8 +20,9 @@ angular.module('angularWpClientApp')
           return scope.$eval(attrs.term);
         }, function(){
             scope.$parent.getTermPosts({
-            type: 'jetpack-portfolio',
-            'term[jetpack-portfolio-type]': attrs.term
+              type: 'jetpack-portfolio',
+              number: 4,
+              'term[jetpack-portfolio-type]': attrs.term
           }, function(res) {
             scope.termItems = res;
           });

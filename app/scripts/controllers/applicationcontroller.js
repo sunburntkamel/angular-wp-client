@@ -27,7 +27,10 @@ angular.module('angularWpClientApp')
       status: ''
     };
     $scope.viewName = '';
-    $scope.terms = {};
+    $scope.terms = {
+      jetpackPortfolioType: {},
+      jetpackPortfolioTag: {}
+    };
     $scope.clearMsg = function() {
       $scope.message = {
         text: '',
@@ -58,14 +61,20 @@ angular.module('angularWpClientApp')
     })
       .$promise
       .then(function(res) {
-        $scope.terms.jetpackPortfolioType = res;
+        for (var i in res.terms) {
+          var term = res.terms[i];
+          $scope.terms.jetpackPortfolioType[term.slug] = term;
+        }
       });
     terms.get({
       taxonomy: 'jetpack-portfolio-tag'
     })
       .$promise
       .then(function(res) {
-        $scope.terms.jetpackPortfolioTag = res;
+        for (var i in res.terms) {
+          var term = res.terms[i];
+          $scope.terms.jetpackPortfolioTag[term.slug] = term;
+        }
       });
     $scope.copyright = new Date().getFullYear();
   });

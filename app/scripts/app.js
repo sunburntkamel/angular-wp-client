@@ -20,7 +20,8 @@ angular
     'ui.bootstrap',
     'config'
   ])
-  .config(function ($stateProvider, $urlRouterProvider) {
+  .config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
+    $locationProvider.html5Mode(true);
     $stateProvider
       .state('main', {
         url: '/',
@@ -33,9 +34,9 @@ angular
         controller: 'SingleCtrl'
       })
       .state('term', {
-        url: 'term/:taxonomy/:term',
+        url: '/term/:taxonomy/:term',
         templateUrl: 'views/term.html',
-        controller: 'termCtrl'
+        controller: 'TermCtrl'
       })
     ;
     $urlRouterProvider.otherwise('/');

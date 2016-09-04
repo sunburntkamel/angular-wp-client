@@ -14,17 +14,20 @@ angular.module('angularWpClientApp')
       'AngularJS',
       'Karma'
     ];
+    console.log('termCtrl');
+    $scope.term = $scope.terms.jetpackPortfolioType[$stateParams.term];
     $scope.getTermPosts = function(taxonomy, term) {
+      console.log('getTermPosts '+taxonomy+' '+term);
       var termKey = 'term['+taxonomy+']';
       var requestObj = {
         type: 'jetpack-portfolio'
       };
       requestObj[termKey] = term;
       posts.get(requestObj, function(res) {
-          $scope.items = res;
+          $scope.termPageItems = res.posts;
           console.log(res);
       });
     };
     // init
-    $scope.getTermPosts($stateParams.taxonomy, $stateParams.terms);
+    $scope.getTermPosts($stateParams.taxonomy, $stateParams.term);
   });

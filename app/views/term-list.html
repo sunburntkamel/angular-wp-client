@@ -1,5 +1,7 @@
 <div class="row" ng-show="termItems.found != '0'">
-  <h3>{{$parent.term.name}}</h3>
+  <h3>
+    <a ui-sref="term({taxonomy: 'jetpack-portfolio-type', term: $parent.term.slug})">{{$parent.term.name}}</a>
+  </h3>
     <div ng-repeat="post in termItems.posts" class="col-md-3 col-sm-4 col-xs-6">
       <a ui-sref="single({post_id: post.ID, slug: post.slug})">
         <img ng-src="{{post.featured_image | thumb: '256':'256':'1'}}" class="img-circle img-thumbnail img-responsive" alt="{{post.title}}" />

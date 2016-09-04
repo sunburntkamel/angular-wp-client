@@ -1,15 +1,29 @@
-<h2>{{post.title}}</h2>
-<p class="text-muted" ng-bind-html="post.excerpt"></p>
+<h2 ng-bind-html="post.title"></h2>
 <div class="row">
   <div ng-class="{'col-md-4': post.type == 'jetpack-portfolio'}">
-    <div class="content" ng-bind-html="post.content"></div>
-    <p ng-if="post.type == 'jetpack-portfolio'">Project Type:
-      <a ng-repeat="(k,v) in post.terms['jetpack-portfolio-type']">{{k}}</a>
-    </p>
-    <p ng-if="post.type == 'jetpack-portfolio'">Tags:
-      <a ng-repeat="(k,v) in post.terms['jetpack-portfolio-tag']">
-        <i class="fa fa-hashtag"></i>{{k}}</a>
-    </p>
+    <div class="panel">
+      <div class="panel-heading">
+        <p class="text-muted" ng-bind-html="post.excerpt"></p>
+      </div>
+      <div class="panel-body">
+        <div class="content" ng-bind-html="post.content"></div>
+      </div>
+      <div class="panel-footer">
+        <p ng-if="post.type == 'jetpack-portfolio'">Project Type:
+          <a
+            ng-repeat="(k,v) in post.terms['jetpack-portfolio-type']"
+            ui-sref="term({taxonomy: 'jetpack-portfolio-type', term: k})"
+          >{{k}}</a>
+        </p>
+        <p ng-if="post.type == 'jetpack-portfolio'">Tags:
+          <a
+            ng-repeat="(k,v) in post.terms['jetpack-portfolio-tag']"
+            ui-sref="term({taxonomy: 'jetpack-portfolio-tag', term: k})"
+          >
+            <i class="fa fa-hashtag"></i>{{k}}</a>
+        </p>
+      </div>
+    </div>
   </div>
   <div ng-class="{'col-md-8': post.type == 'jetpack-portfolio'}">
     <div class="well media">
@@ -18,20 +32,20 @@
             <p>
               <a ng-click="showFeatImage($index)">
                 <img
-                ng-src="{{picture.URL | thumb:'256':'256':'1'}}"
-                alt="picture.title"
-                class="img-responsive img-circle img-thumbnail"
+                  ng-if="picture.mimetype != 'application/PDF'"
+                  ng-src="{{picture.URL | thumb:'256':'256':'1'}}"
+                  alt="picture.title"
+                  class="img-responsive img-circle img-thumbnail"
               />
               </a>
             </p>
-            <p ng-bind-html="picture.caption"></p>
         </div>
       </div>
       <div class="row" ng-if="featuredImage > -1">
         <div id="featImageWrap">
           <img ng-src="{{attachArray[featuredImage].URL}}" class="img-responsive img-thumbnail" alt="Featured Image" />
-          <a ng-if="(featuredImage - 1) > 0" ng-click="showFeatImage((featuredImage -1))"><i class="fa fa-chevron-left"></i> Previous</a>
-          <a ng-if="featuredImage < attachment_count" ng-click="showFeatImage((featuredImage + 1))"><i class="fa fa-chevron-right"></i> Next</a>
+          <a ng-if="featuredImage > 0" ng-click="showFeatImage((featuredImage -1))"><i class="fa fa-chevron-left"></i> Previous</a>
+          <a ng-if="(featuredImage + 1) < post.attachment_count" ng-click="showFeatImage((featuredImage + 1))"><i class="fa fa-chevron-right"></i> Next</a>
         </div>
         <p ng-bind-html="attachArray[featuredImage].caption"></p>
       </div>
